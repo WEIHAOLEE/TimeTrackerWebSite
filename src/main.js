@@ -4,7 +4,9 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from "vue-axios"
 import ElementUI from 'element-ui';
-import './assets/element/style/theme/index.css';
+// import './assets/element/style/theme/index.css';
+// sass 编辑器使用这个？
+import 'element-ui/lib/theme-chalk/index.css'
 
 // 拦截器
 axios.interceptors.response.use(function (response) {
