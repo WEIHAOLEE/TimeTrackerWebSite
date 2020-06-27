@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width:50%;  margin: 0 auto;">
     <h1>注册</h1>
     <el-form
       :model="ruleForm"
@@ -8,15 +8,16 @@
       ref="ruleForm"
       label-width="100px"
       class="demo-ruleForm"
+      label-position="top"
     >
-      <el-form-item label="用户名" prop="name">
-        <el-input v-model="ruleForm.name"></el-input>
+      <el-form-item  prop="name" >
+        <el-input placeholder="用户名" v-model="ruleForm.name"></el-input>
       </el-form-item>
-      <el-form-item label="密码" prop="pass">
-        <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+      <el-form-item  prop="pass">
+        <el-input placeholder="密码" type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="确认密码" prop="checkPass">
-        <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+      <el-form-item prop="checkPass">
+        <el-input placeholder="确认密码" type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
       </el-form-item>
 
       <el-form-item>
