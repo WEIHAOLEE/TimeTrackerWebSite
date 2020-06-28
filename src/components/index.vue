@@ -7,7 +7,7 @@
           class="el-menu-demo"
           mode="horizontal"
           @select="handleSelect"
-          router
+          router style=" position: relative;"
         >
           <el-menu-item>
             <el-image style="width: 40px; height: 40px;" :src="logoSrc" :fit="fit"></el-image>
@@ -23,13 +23,12 @@
         </el-menu>
         <div class="line"></div>
       </el-header>
-      <el-main>
+      <el-main :style="{minHeight:windowsHeight + 'px'}" style="padding:5px">
         <router-view></router-view>
       </el-main>
-      <el-footer style="position:absolute;bottom:0;width:100%; height:80px">
+      <el-footer style="width:100%; ">
         <!--分割线-->
-        <el-divider></el-divider>
-        Copyright WeiHaoLee. All Rights Reserved.
+        <el-divider></el-divider>Copyright WeiHaoLee. All Rights Reserved.
       </el-footer>
     </el-container>
   </div>
@@ -43,13 +42,21 @@ export default {
       activeIndex: "1",
       activeIndex2: "1",
       fit: "fill",
-      logoSrc: require("@/assets/logo.png")
+      logoSrc: require("@/assets/logo.png"),
+      windowsHeight:0
     };
   },
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     }
+  },
+  mounted() {
+    //动态设置内容高度 让footer始终居底   header+footer的高度是100
+    this.windowsHeight = document.documentElement.clientHeight - 140; //监听浏览器窗口变化
+    window.onresize = () => {
+      this.windowsHeight = document.documentElement.clientHeight - 140;
+    };
   }
 };
 </script>
