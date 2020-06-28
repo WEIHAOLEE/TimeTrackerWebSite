@@ -4,6 +4,8 @@ import Index from './components/index'
 import MainPage from './components/mainPage'
 import About from './components/about'
 import Account from './components/accountManage'
+import UserPage from './components/userPage'
+// import store from './store'
 Vue.use(Router);
 
 export default new Router({
@@ -13,7 +15,7 @@ export default new Router({
             path: "/",
             name: "index",
             component: Index,
-            children: [    
+            children: [
                 {
                     path: "/",
                     name: "mainPage",
@@ -27,8 +29,22 @@ export default new Router({
                 {
                     path: "/account",
                     name: "account",
-                    component: Account
-                }
+                    component: Account,
+                    // beforeEnter: (to, from, next) => {
+                    //       if(store.state.userInfo||to.name==='account'){
+                    //         next();
+                    //       }else{
+                    //         next({name: 'user'})
+                    //       }
+                    // }
+                },
+                {
+                    path: "/user/:id",
+                    name: "user",
+                    component: UserPage,
+                    props: true
+                },
+
             ]
         },
 

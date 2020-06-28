@@ -22,6 +22,7 @@
 <script>
 import Register from "./register";
 import Login from "./login";
+import store from "../store";
 export default {
   name: "mainPage",
   components: {
@@ -32,9 +33,26 @@ export default {
     return {
       logo: require("@/assets/logo.png"),
       url: require("@/assets/backGround.jpg"),
+      fit: "fit",
       registerShow: false,
       loginShow: false
     };
+  },
+
+  beforeRouteEnter: (to, from, next) => {
+    if (store.state.userInfo == "") {
+      if (sessionStorage.getItem("login")) {
+        
+        store.commit("login",JSON.parse(sessionStorage.getItem("login")))
+        console.log(store.state.userInfo.name)
+        next({ path: "/user/" + store.state.userInfo.name });
+      }else{
+        next();
+      }
+      
+    } else {
+      next({ path: "/user/" + store.state.userInfo.name });
+    }
   }
 };
 </script>

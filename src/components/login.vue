@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <el-card class="box-card">
       <h1>登录</h1>
       <el-form
@@ -63,7 +63,22 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit!");
+          if (
+            this.ruleForm.name == "伏拉夫" &&
+            this.ruleForm.pass == "我爱中国"
+          ) {
+            // 登录操作
+            // 储存到缓存
+            // sessionStorage
+            sessionStorage.setItem("login",JSON.stringify(this.ruleForm))
+            // vuex
+            this.$store.commit("login", this.ruleForm);
+            // 跳转
+            this.$router.push("/user/" + this.ruleForm.name);
+            alert("密码正确");
+          } else {
+            alert("密码错误");
+          }
         } else {
           console.log("error submit!!");
           return false;

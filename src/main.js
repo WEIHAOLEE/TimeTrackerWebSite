@@ -7,6 +7,8 @@ import ElementUI from 'element-ui';
 // import './assets/element/style/theme/index.css';
 // sass 编辑器使用这个？
 import 'element-ui/lib/theme-chalk/index.css'
+import Vuex from 'vuex'
+import store from './store'
 
 // 拦截器
 axios.interceptors.response.use(function (response) {
@@ -26,11 +28,21 @@ axios.interceptors.response.use(function (response) {
   //   this.showAlert(res.msg);
   // }
 });
+// 读取缓存判断是否有登录记录
+// router.beforeEach(function(to,from,next){
+//   if(store.state.userInfo||to.path==='/account'){
+//     next();
+//   }else{
+//     next({path:'/account'})
+//   }
+// })
 Vue.config.productionTip = false
 Vue.use(axios,VueAxios)
 Vue.use(ElementUI)
+Vue.use(Vuex)
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
