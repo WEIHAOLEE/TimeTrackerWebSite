@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Index from './components/index'
-import Register from './components/register'
 import MainPage from './components/mainPage'
+import About from './components/about'
+import Account from './components/accountManage'
 Vue.use(Router);
 
 export default new Router({
@@ -12,18 +13,24 @@ export default new Router({
             path: "/",
             name: "index",
             component: Index,
-            children: [
-                {
-                    path: "/reg",
-                    name: "register",
-                    component: Register
-                },
+            children: [    
                 {
                     path: "/",
                     name: "mainPage",
                     component: MainPage
+                },
+                {
+                    path: "/about",
+                    name: "about",
+                    component: About
+                },
+                {
+                    path: "/account",
+                    name: "account",
+                    component: Account
                 }
             ]
-        }
+        },
+
     ]
 })

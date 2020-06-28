@@ -7,7 +7,8 @@
           class="el-menu-demo"
           mode="horizontal"
           @select="handleSelect"
-          router style=" position: relative;"
+          router
+          style=" position: relative;"
         >
           <el-menu-item>
             <el-image style="width: 40px; height: 40px;" :src="logoSrc" :fit="fit"></el-image>
@@ -18,13 +19,18 @@
             <el-menu-item index="2-1">功能介绍</el-menu-item>
             <el-menu-item index="2-2">常见问题</el-menu-item>
           </el-submenu>
-          <el-menu-item style="float:right" index="/reg">账户管理</el-menu-item>
-          <el-menu-item style="float:right" index="3">关于我们</el-menu-item>
+          <el-menu-item style="float:right" index="/account">账户管理</el-menu-item>
+          <el-menu-item style="float:right" index="/about">关于我们</el-menu-item>
         </el-menu>
         <div class="line"></div>
       </el-header>
-      <el-main :style="{minHeight:windowsHeight + 'px'}" style="padding:5px">
-        <router-view></router-view>
+      <el-main
+        :style="{minHeight:windowsHeight + 'px'}"
+        style="padding-top:5px; padding-left:0px; padding-right:0px"
+      >
+        <transition name="el-fade-in">
+          <router-view></router-view>
+        </transition>
       </el-main>
       <el-footer style="width:100%; ">
         <!--分割线-->
@@ -43,7 +49,7 @@ export default {
       activeIndex2: "1",
       fit: "fill",
       logoSrc: require("@/assets/logo.png"),
-      windowsHeight:0
+      windowsHeight: 0
     };
   },
   methods: {
